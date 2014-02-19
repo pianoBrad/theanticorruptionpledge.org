@@ -562,7 +562,7 @@ var LegislatorProfile = React.createClass({
           <hr/>
           <h2 className="subheader">{reforms.length > 0 ? "Sponsored Reform" : ""}</h2>
           <Reforms reforms={reforms} />
-          <Thanks legislator={this.state.legislators[0]} reforms={reforms} />
+          <Lobby legislator={this.state.legislators[0]} reforms={reforms} />
         </div>
       </div>
       </div>
@@ -570,7 +570,7 @@ var LegislatorProfile = React.createClass({
   }
 });
 
-var Thanks = React.createClass({
+var Lobby = React.createClass({
   render: function() {
     var message;
     if (this.props.legislator) {
@@ -589,10 +589,29 @@ var Thanks = React.createClass({
     }
     var content;
     if (this.props.legislator && this.props.reforms.length > 0) {
+      var legislator = this.props.legislator;
       content = (
         <div>
-        <h4 className="subheader special-header">{message}</h4>
-        <p>Call or email your candidate today, or get in touch using social media.</p>
+        <div className="row">
+          <div className="large-12 columns">
+            <h4 className="subheader special-header">{message}</h4>
+          </div>
+        </div>
+        <div className="panel callout tool">
+        <div className="row">
+          <div className="large-1 medium-2 small-3 columns">
+            Lobby
+          </div>
+          <div className="large-11 medium-10 small-9 columns">
+            <ul>
+              <li>Call: {legislator.phone}</li>
+              <li>Email: {legislator.contact_form}</li>
+              <li>Write: {legislator.office}, Washington, D.C.</li>
+              <li>Fax: {legislator.fax}</li>
+            </ul>
+          </div>
+        </div>
+        </div>
         <hr/>
         </div>
       );
